@@ -86,8 +86,15 @@ fi
 
 GTF_F=
 if [[ -n $GTF ]]; then
+    if [[ "$GTF" =~ ".gz" ]]; then
+        echoerr "Decompressing $GTF with gzip"
+        gzip -d "$GTF"
+        GTF=${GTF//.gz/}
+    fi
     GTF_F=$(basename ${GTF})
 fi
+
+
 
 # Are we Sanger quals or...
 QUAL=$(perl /opt/scripts/tophat/check_qual_score.pl $QUERY1_F)

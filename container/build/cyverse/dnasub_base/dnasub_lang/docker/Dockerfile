@@ -5,7 +5,7 @@ MAINTAINER Matthew Vaughn <vaughn@tacc.utexas.edu>
 
 ENV _APP DNALC Language Support
 ENV _AUTHOR Matthew Vaughn
-ENV _VERSION 0.7.0
+ENV _VERSION 0.8.0
 
 RUN yum -y groupinstall "Development tools" && \
     yum clean all
@@ -13,7 +13,7 @@ RUN yum -y groupinstall "Development tools" && \
 # Functional packaes
 RUN yum -y  install \
             sqlite \
-            cairo-1.8.8-6.el6_6.x86_64 \
+            cairo-1.8.8-6.el6_6.x86_64   \
             java-1.7.0-openjdk.x86_64 \
             && yum clean all
 
@@ -40,7 +40,7 @@ RUN mkdir /tmp/cache
 # We do this because R can't interact with the BioC and
 # CRAN infrastructure if its built against outdated
 # versions of libcurl - wierd DNS and SSL errors abound
-COPY cache/curl-7.51.0.tar.gz /tmp/cache
+COPY cache/curl-7.51.0.tar.gz /tmp/cache/
 RUN cd /tmp/cache && \
     tar zxf curl-7.51.0.tar.gz && \
     cd curl-7.51.0 && \
@@ -49,18 +49,18 @@ RUN cd /tmp/cache && \
     ldconfig && \
     cd /tmp/cache && rm -rf curl-7.51.0*
 
-# Python 2.7.1 into /opt to avoid breaking yum
-COPY cache/Python-2.7.1.tar.bz2 /tmp/cache
+# Python 2.7.13 into /opt to avoid breaking yum
+COPY cache/Python-2.7.13.tgz /tmp/cache/
 RUN cd /tmp/cache && \
-    tar xf Python-2.7.1.tar.bz2 && \
-    cd Python-2.7.1 && \
+    tar xzf Python-2.7.13.tgz && \
+    cd Python-2.7.13 && \
     ./configure --prefix=/opt && \
     make && make altinstall /opt/bin/python2.7 && \
     ldconfig && \
-    cd /tmp/cache && rm -rf Python-2.7.1*
+    cd /tmp/cache && rm -rf Python-2.7.13*
 
 # Pip and virtualenv
-COPY cache/distribute-0.6.27.tar.gz /tmp/cache
+COPY cache/distribute-0.6.27.tar.gz /tmp/cache/
 RUN cd /tmp/cache && \
     tar xf distribute-0.6.27.tar.gz && \
     cd distribute-0.6.27 && \
@@ -70,7 +70,7 @@ RUN cd /tmp/cache && \
 
 
 # R 3.2.1 with graphics, modern libcurl, and cairo support
-COPY cache/R-3.2.1.tar.gz /tmp/cache
+COPY cache/R-3.2.1.tar.gz /tmp/cache/
 RUN cd /tmp/cache && \
     tar -zxf R-3.2.1.tar.gz && \
     cd R-3.2.1 && \

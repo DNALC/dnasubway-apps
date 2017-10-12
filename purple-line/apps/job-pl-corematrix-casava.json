@@ -1,0 +1,21 @@
+{
+  "name":"corematrix-casava-test",
+  "appId": "dnasubway-pl-corematrix-balaur-0.0.1",
+  "maxRunTime": "00:30:00",
+  "batchQueue": "dolanlc",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "metadata" : "ghiban/purlple-line-data/casava/sample_metadata.tsv",
+    "classifier": "ghiban/gg-13-8-99-515-806-nb-classifier.qza",
+    "table": "https://agave.iplantc.org/jobs/v2/9168173530186584551-242ac115-0001-007/outputs/media/output/table.qza",
+    "tree": "https://agave.iplantc.org/jobs/v2/9168173530186584551-242ac115-0001-007/outputs/media/output/rooted-tree.qza",
+    "repseqs": "https://agave.iplantc.org/jobs/v2/9168173530186584551-242ac115-0001-007/outputs/media/output/rep-seqs.qza"
+  },
+  "parameters": {
+    "jobName": "corematrix-casava",
+    "sdepth": 1000
+  },
+  "notifications": [
+  ]
+}

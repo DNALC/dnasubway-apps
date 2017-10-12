@@ -16,9 +16,9 @@ MD5APP="openssl md5 "
 
 # Get major.minor Docker version.
 # Error if can't find Docker or version too low.
-DOCKER_VERSION=$(docker --version | egrep -o  "\d\.\d+")
+DOCKER_VERSION=$(docker --version|grep -o -P "\d+\.\d+"|head -n1)
 echo "Docker version ${DOCKER_VERSION} detected."
-if [ $(echo ${DOCKER_VERSION}'<'1.10 | bc -l) == 1 ];
+if [[ $(echo ${DOCKER_VERSION}'<'1.10 | bc -l) == 1 ]];
 then
   echo "Critical error: Docker 1.10 or higher is required to build a Singularity image."
 fi
@@ -29,6 +29,7 @@ if [ "$DOCKER_VERSION" == "1.13" ];
 then
     DOCKER_VERSION="1.12"
 fi
+#DOCKER_API_VERSION=1.19
 
 mkdir -p ${PKG_CACHE}
 cd ${PKG_CACHE}
@@ -36,11 +37,11 @@ cd ${PKG_CACHE}
 for U in https://netcologne.dl.sourceforge.net/project/samtools/samtools/0.1.19/samtools-0.1.19.tar.bz2 \
          https://github.com/agordon/fastx_toolkit/releases/download/0.0.14/fastx_toolkit-0.0.14.tar.bz2 \
          https://github.com/agordon/libgtextutils/releases/download/0.7/libgtextutils-0.7.tar.gz \
-         http://ccb.jhu.edu/software/tophat/downloads/tophat-2.0.11.Linux_x86_64.tar.gz \
+         http://ccb.jhu.edu/software/tophat/downloads/tophat-2.1.1.Linux_x86_64.tar.gz \
          https://github.com/broadinstitute/picard/releases/download/1.120/picard-tools-1.120.zip \
          http://liquidtelecom.dl.sourceforge.net/project/bowtie-bio/bowtie2/2.2.1/bowtie2-2.2.1-linux-x86_64.zip \
-         http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.1.0.Linux_x86_64.tar.gz \
-         http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.4.zip
+         http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz \
+         http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip
 do
   BASENAME=$(basename $U)
   if [ ! -f ${BASENAME} ];
@@ -62,6 +63,8 @@ do
 	  cp bundles/$K/run-${K}.sh ${BUILD_DIR}/dnasub_apps/runners/
   fi
 done
+
+ls -l ${BUILD_DIR}/dnasub_apps/runners/
 
 if [ "$REBUILD" -eq "1" ];
 then

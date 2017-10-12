@@ -1,0 +1,151 @@
+{
+    "available":true,
+    "checkpointable":false,
+    "name": "dnasubway-pl-denoise-balaur",
+    "label": "DNASubway Qiime2 denoise",
+    "version": "0.0.1",
+    "helpURI": "http://qiime2.org/",
+    "defaultQueue": "dolanlc",
+    "defaultNodeCount": 1,
+    "defaultProcessorsPerNode": 4,
+    "defaultMemoryPerNode":"4GB",
+    "defaultMaxRunTime": "05:00:00",
+    "executionType": "HPC",
+    "executionSystem":"cshl-dolan-01",
+    "parallelism": "SERIAL",
+    "deploymentPath": "ghiban/applications/dnasubway/purple-line/balaur",
+    "deploymentSystem": "data.iplantcollaborative.org",
+    "shortDescription": "Qiime2 DADA2",
+    "longDescription": "",
+    "author": "Cornel Ghiban",
+    "parallelism": "SERIAL",
+    "templatePath": "wrap-pl-denoise.sh",
+    "testPath": "test-pl-denoise.sh",
+    "ontology": ["http://edamontology.org/topic_0091", "http://edamontology.org/operation_3219"],
+    "tags": [ "next-gen", "microbiome", "qiime", "purpleline", "dnasubway" ],
+    "modules": [],
+    "inputs": [
+        {
+            "id": "files",
+            "value": {
+                "default": "ghiban/purlple-line-data/emp/imported-single-end.qza",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "A list of comma separated .qza files",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Sequence"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": -1,
+                "fileTypes": [
+                    "qza-0"
+                ]
+            }
+        },
+        {
+            "id": "metadata",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "Sample metadata file",
+                "description": "Sample metadata file"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "jobName",
+            "value": {
+                "default": "qiime2-step2",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "job name",
+                "description": "the name of the job"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "paired",
+            "value": {
+                "default": false,
+                "type": "bool",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Provided files are from a paired-end experiment (L and R)",
+                "description": "Provided files are from a paired-end experiment (L and R)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },
+        {
+            "id": "truncLen",
+            "value": {
+                "default": 0,
+                "type": "number",
+                "validator": "[0-9]+",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "Position at which sequences should be truncated due to decrease inquality.",
+                "description": "Position at which sequences should be truncated due to decrease in quality. This truncates the 3' end of the of the input sequences, which will be the bases that were sequenced in the last cycles. Reads that are shorter than this value will be discarded"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        },
+        {
+            "id": "trimLeft",
+            "value": {
+                "default": 0,
+                "type": "number",
+                "validator": "[0-9]+",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Position at which sequences",
+                "description": "Position at which sequences should be trimmed due to low quality. This trims the 5' end of the of the input sequences, which will be the bases that were sequenced in the first cycles."
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        }
+    ],
+    "outputs": []
+}

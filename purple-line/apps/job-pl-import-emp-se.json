@@ -1,0 +1,22 @@
+{
+  "name":"emp-single-end-test",
+  "appId": "dnasubway-pl-import-balaur-0.0.1",
+  "maxRunTime": "00:30:00",
+  "batchQueue": "dolanlc",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "bfile" : "ghiban/purlple-line-data/emp/single-end/sample_metadata.tsv",
+    "files": [
+        "ghiban/purlple-line-data/emp/single-end/barcodes.fastq.gz",
+        "ghiban/purlple-line-data/emp/single-end/sequences.fastq.gz"
+    ]
+  },
+  "parameters": {
+    "jobName": "test-pl-import-emp-se",
+    "paired": false,
+    "format": "emp"
+  },
+  "notifications": [
+  ]
+}

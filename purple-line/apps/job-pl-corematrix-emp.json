@@ -1,0 +1,21 @@
+{
+  "name":"corematrix-test",
+  "appId": "dnasubway-pl-corematrix-balaur-0.0.1",
+  "maxRunTime": "00:30:00",
+  "batchQueue": "dolanlc",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "metadata" : "ghiban/purlple-line-data/emp/single-end/sample_metadata.tsv",
+    "classifier": "ghiban/gg-13-8-99-515-806-nb-classifier.qza",
+    "table": "ghiban/purlple-line-data/emp/single-end/table.qza",
+    "tree": "ghiban/purlple-line-data/emp/single-end/rooted-tree.qza",
+    "repseqs": "ghiban/purlple-line-data/emp/single-end/rep-seqs.qza"
+  },
+  "parameters": {
+    "jobName": "test-pl-corematrix",
+    "sdepth": 1080
+  },
+  "notifications": [
+  ]
+}

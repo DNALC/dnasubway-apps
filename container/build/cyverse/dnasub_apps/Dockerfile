@@ -1,9 +1,9 @@
 # docker build --rm -t cyverse/dnasub_apps .
 
-FROM cyverse/dnasub_base
+FROM cyverse/dnasub_lang
 MAINTAINER Matthew Vaughn <vaughn@tacc.utexas.edu>
 ENV _APP DNALC DNA Subway Apps
-ENV _VERSION 0.7.0
+ENV _VERSION 0.8.0
 
 RUN mkdir /opt/scripts
 ADD scripts /opt/scripts
@@ -22,27 +22,27 @@ COPY cache/picard-tools-1.120.zip /home/cache/
 RUN cd /home/cache && unzip picard-tools-1.120.zip && mv picard-tools-1.120 /opt && rm -rf /home/cache/* && chmod -R a+r /opt/picard-tools-1.120
 ENV DNASUB_PICARD_DIR=/opt/picard-tools-1.120
 
-# Install TopHat 2.0.11.1
-COPY cache/tophat-2.0.11.Linux_x86_64.tar.gz /home/cache
-# https://ccb.jhu.edu/software/tophat/downloads/tophat-2.0.11.Linux_x86_64.tar.gz
-RUN cd /home/cache && tar -zxf tophat-2.0.11.Linux_x86_64.tar.gz && mv tophat-2.0.11.Linux_x86_64/* /opt/bin/ && rm -rf /home/cache/*
+# Install TopHat 2.1.1
+COPY cache/tophat-2.1.1.Linux_x86_64.tar.gz /home/cache/
+# https://ccb.jhu.edu/software/tophat/downloads/tophat-2.1.1.Linux_x86_64.tar.gz
+RUN cd /home/cache && tar -zxf tophat-2.1.1.Linux_x86_64.tar.gz && mv tophat-2.1.1.Linux_x86_64/* /opt/bin/ && rm -rf /home/cache/*
 
 # Install Bowtie 2.2.1.1
-COPY cache/bowtie2-2.2.1-linux-x86_64.zip /home/cache
+COPY cache/bowtie2-2.2.1-linux-x86_64.zip /home/cache/
 RUN cd /home/cache && unzip bowtie2-2.2.1-linux-x86_64.zip && mv bowtie2-2.2.1/* /opt/bin/ && cd /tmp && rm -rf /home/cache/*
 
 # Install Cufflinks 2.1.0
-COPY cache/cufflinks-2.1.0.Linux_x86_64.tar.gz /home/cache
-RUN cd /home/cache && tar -zxf cufflinks-2.1.0.Linux_x86_64.tar.gz && mv cufflinks-2.1.0.Linux_x86_64/* /opt/bin/ && rm -rf /home/cache/*
+COPY cache/cufflinks-2.2.1.Linux_x86_64.tar.gz /home/cache/
+RUN cd /home/cache && tar -zxf cufflinks-2.2.1.Linux_x86_64.tar.gz && mv cufflinks-2.2.1.Linux_x86_64/* /opt/bin/ && rm -rf /home/cache/*
 
-# Install FastQC 0.11.4
-COPY cache/fastqc_v0.11.4.zip /home/cache
-RUN cd /home/cache && unzip fastqc_v0.11.4.zip && mv FastQC /opt/ && chmod -R a+rx /opt/FastQC/fastqc && rm -rf /home/cache/*
+# Install FastQC 0.11.5
+COPY cache/fastqc_v0.11.5.zip /home/cache/
+RUN cd /home/cache && unzip fastqc_v0.11.5.zip && mv FastQC /opt/ && chmod -R a+rx /opt/FastQC/fastqc && rm -rf /home/cache/*
 ENV DNASUB_FASTQC_DIR=/opt/FastQC
 
 # Install FASTX_toolkit
-COPY cache/libgtextutils-0.7.tar.gz /home/cache
-COPY cache/fastx_toolkit-0.0.14.tar.bz2 /home/cache
+COPY cache/libgtextutils-0.7.tar.gz /home/cache/
+COPY cache/fastx_toolkit-0.0.14.tar.bz2 /home/cache/
 RUN cd /home/cache && tar xzf libgtextutils-0.7.tar.gz && \
 	cd libgtextutils-0.7 && ./configure && make && make install && ldconfig && \
 	cd /home/cache && tar xjf fastx_toolkit-0.0.14.tar.bz2 && cd fastx_toolkit-0.0.14 && \
@@ -57,12 +57,12 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/
 # Automatically config root user for iplantc.org tenant
 RUN /opt/bin/agave-cli/bin/tenants-init -t $AGAVE_TENANT
 
-ADD ./runners /opt/bin
+COPY runners/*.sh /opt/bin/
 
 # Install cummerbund
 # These are not identical to the ones on Lonestar or in the bundle
-COPY bio.R .
+COPY bio.R /home/
 RUN /opt/bin/Rscript bio.R && rm -rf bio.R && rm -rf /tmp/*
 
 # Just in case
-RUN chmod -R a+rx /opt/bin/*
+RUN chmod -v -R a+rx /opt/bin/*

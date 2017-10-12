@@ -170,11 +170,8 @@ sub screen_file {
  <head>
   <title>Cuffdiff data summary</title>
   <link type="text/css" rel="stylesheet" href="/css/cdtables.css" />
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <!-- DataTables CSS -->
-  <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
-  <!-- DataTables -->
-  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
  </head>
  <body>
   <div id="export-csv">
@@ -212,6 +209,8 @@ END
     print HTML <<"END";
    </tbody>
   </table>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
   <script language="Javascript" type="text/javascript">
     \$(document).ready(function() {
       var table = \$("#cd_table").dataTable({

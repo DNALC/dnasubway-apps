@@ -1,0 +1,23 @@
+{
+  "name":"denoise-se-multi",
+  "appId": "dnasubway-pl-denoise-balaur-0.0.1",
+  "maxRunTime": "05:00:00",
+  "batchQueue": "dolanlc",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "metadata" : "ghiban/purlple-line-data/emp/single-end/sample_metadata.tsv",
+    "files": [ 
+        "ghiban/purlple-line-data/emp/imported-single-end.qza",
+        "https://agave.iplantc.org/jobs/v2/4274450477120744985-242ac115-0001-007/outputs/media/imported.qza"
+    ]
+  },
+  "parameters": {
+    "jobName": "denoise-single-end-test",
+    "paired": false,
+    "truncLen": 100,
+    "trimLeft": 0
+  },
+  "notifications": [
+  ]
+}

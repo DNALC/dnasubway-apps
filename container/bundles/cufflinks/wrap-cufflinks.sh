@@ -9,7 +9,7 @@ APPNAME=cufflinks
 DOCKER_CONTAINER="cyverse/dnasub_apps"
 SINGULARITY_CONTAINER="cyverse-dnasub_apps.img"
 
-TYPE=${TYPE:-singularity}
+TYPE=${TYPE:-docker}
 
 # Manually, enumerate over each parameter
 DOCK_ENV="_$$.env"
@@ -45,7 +45,7 @@ echo "overhangTolerance3=${overhangTolerance3}" >> ${DOCK_ENV}
 echo "noFauxReads=${noFauxReads}" >> ${DOCK_ENV}
 
 echo "DEBUG=${DEBUG}" >> ${DOCK_ENV}
-echo "THREADS=15" >> ${DOCK_ENV}
+echo "THREADS=8" >> ${DOCK_ENV}
 
 #Container exec
 DEFAULT_EP="/opt/bin/run-${APPNAME}.sh"
@@ -54,7 +54,7 @@ env | sort -k1 > "_$$.variables"
 
 if [[ "$TYPE" == "docker" ]];
 then
-	docker run --entrypoint ${ENTRYPOINT} \
+	nice docker run --entrypoint ${ENTRYPOINT} \
 	 			--env-file ${DOCK_ENV} \
 	 			-v $PWD:/home:rw ${DOCKER_CONTAINER}
 fi

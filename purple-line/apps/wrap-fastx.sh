@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-if [ "${DEBUG}" == "1" ];
-then
-    set -x
-fi
-
-APPNAME=cuffmerge
+APPNAME="fastx"
 DOCKER_CONTAINER="cyverse/dnasub_apps"
 SINGULARITY_CONTAINER="cyverse-dnasub_apps.img"
 
@@ -14,26 +9,15 @@ TYPE=${TYPE:-singularity}
 # Manually, enumerate over each parameter
 DOCK_ENV="_$$.env"
 SING_ENV="$DOCK_ENV.singularity"
-
 rm -rf "$DOCK_ENV*"
 
-echo "query1=${query1}" >> ${DOCK_ENV}
-echo "query2=${query2}" >> ${DOCK_ENV}
-echo "query3=${query3}" >> ${DOCK_ENV}
-echo "query4=${query4}" >> ${DOCK_ENV}
-echo "query5=${query5}" >> ${DOCK_ENV}
-echo "query6=${query6}" >> ${DOCK_ENV}
-echo "query7=${query7}" >> ${DOCK_ENV}
-echo "query8=${query8}" >> ${DOCK_ENV}
-echo "query9=${query9}" >> ${DOCK_ENV}
-echo "query10=${query10}" >> ${DOCK_ENV}
-echo "query11=${query11}" >> ${DOCK_ENV}
-echo "query12=${query12}" >> ${DOCK_ENV}
-echo "ref_seq=${ref_seq}" >> ${DOCK_ENV}
+echo "seq1=${seq1}" >> ${DOCK_ENV}
 echo "jobName=${jobName}" >> ${DOCK_ENV}
-
-echo "THREADS=8" >> ${DOCK_ENV}
-echo "DEBUG=${DEBUG}" >> ${DOCK_ENV}
+echo "quality_threshold=${quality_threshold}" >> ${DOCK_ENV}
+echo "min_length=${min_length}" >> ${DOCK_ENV}
+echo "min_quality=${min_quality}" >> ${DOCK_ENV}
+echo "percent_bases=${percent_bases}" >> ${DOCK_ENV}
+echo "perform_indexing=${perform_indexing}" >> ${DOCK_ENV}
 
 #Container exec
 DEFAULT_EP="/opt/bin/run-${APPNAME}.sh"
@@ -42,9 +26,11 @@ env | sort -k1 > "_$$.variables"
 
 if [[ "$TYPE" == "docker" ]];
 then
+	set -x
 	docker run --entrypoint ${ENTRYPOINT} \
 	 			--env-file ${DOCK_ENV} \
 	 			-v $PWD:/home:rw ${DOCKER_CONTAINER}
+	set +x
 fi
 
 if [[ "$TYPE" == "singularity" ]];
@@ -60,16 +46,12 @@ then
 		done <${DOCK_ENV}
 		source ${SING_ENV}
 
-		echo "${SINGULARITY_CONTAINER}" >> .agave.archive
-
 		singularity exec ${SINGULARITY_CONTAINER} ${ENTRYPOINT}
 	fi
 	
 fi
 
-# rm ${DOCK_ENV}*
+echo "${SINGULARITY_CONTAINER}" >> .agave.archive
 
-if [ "${DEBUG}" == "1" ];
-then
-    set +x
-fi
+
+# rm ${DOCK_ENV}*

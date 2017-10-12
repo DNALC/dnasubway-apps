@@ -57,6 +57,12 @@ LABEL=${LABEL//\ /}
 OPTIONS="--no-update-check -o $output_dir -p $THREADS --min-isoform-fraction ${minIsoformFraction} --pre-mrna-fraction ${preMrnaFraction} --max-intron-length ${maxIntronLength} --small-anchor-fraction ${smallAnchorFraction} --min-frags-per-transfrag ${minFragsPerTransfrag} --overhang-tolerance ${overhangTolerance} --max-bundle-length ${maxBundleLength} --min-intron-length ${minIntronLength} --trim-3-avgcov-thresh ${trim3avgcovThresh} --trim-3-dropoff-frac ${trim3dropoffFrac}"
 
 # Inputs
+if [[ "$ANNOTATION" =~ ".gz" ]]; then
+    echoerr "Decompressing $ANNOTATION with gzip"
+    gzip -d "$ANNOTATION"
+    ANNOTATION=${ANNOTATION//.gz/}
+fi
+
 query1_F=${query1}
 
 # Inputs + parameters
@@ -75,10 +81,17 @@ if [[ $GUIDE -eq 1 ]]; then
  ANNO_F=${ANNOTATION}
  OPTIONS="${OPTIONS} --GTF-guide ${ANNO_F}"
 fi
+
 # Bias Fasta (optional)
 if [[ -n $BIAS ]]; then
- BIAS_F=${BIAS}
- OPTIONS="${OPTIONS} --frag-bias-correct ${BIAS_F}"
+  if [[ "$BIAS" =~ ".gz" ]]; then
+    echoerr "Decompressing $BIAS with gzip"
+    gzip -d "$BIAS"
+    BIAS=${BIAS//.gz/}
+  fi
+
+  BIAS_F=${BIAS}
+  OPTIONS="${OPTIONS} --frag-bias-correct ${BIAS_F}"
 fi
 
 # Conditional or optional params

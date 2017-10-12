@@ -22,7 +22,7 @@ echo "referenceFasta=${referenceFasta}" >> ${DOCK_ENV}
 # parameters
 echo "cleanupParameter=${cleanupParameter}" >> ${DOCK_ENV}
 # Threads
-echo "THREADS=15" >> ${DOCK_ENV}
+echo "THREADS=8" >> ${DOCK_ENV}
 
 #Container exec
 DEFAULT_EP="/opt/bin/run-${APPNAME}.sh"

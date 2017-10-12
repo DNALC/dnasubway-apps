@@ -14,9 +14,9 @@ mkdir -p ${PKG_CACHE}
 cd ${PKG_CACHE}
 
 for U in https://curl.haxx.se/download/curl-7.51.0.tar.gz \
-		 https://cran.r-project.org/src/base/R-3/R-3.2.1.tar.gz \
-		 http://pypi.python.org/packages/source/d/distribute/distribute-0.6.27.tar.gz \
-		 http://www.python.org/ftp/python/2.7.1/Python-2.7.1.tar.bz2
+		https://cran.r-project.org/src/base/R-3/R-3.2.1.tar.gz \
+		http://pypi.python.org/packages/source/d/distribute/distribute-0.6.27.tar.gz \
+        https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
 do
   BASENAME=$(basename $U)
   if [ ! -f ${BASENAME} ];
@@ -28,7 +28,7 @@ done
 
 cd ${BUILD_DIR}
 
-for K in dnasub_core dnasub_lang dnasub_base
+for K in dnasub_core dnasub_lang
 do
   echo "Building $K..."
   cd ${BUILD_DIR}/${K}/docker

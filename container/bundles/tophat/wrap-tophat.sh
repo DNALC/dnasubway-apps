@@ -6,7 +6,7 @@ APPNAME=tophat
 DOCKER_CONTAINER="cyverse/dnasub_apps"
 SINGULARITY_CONTAINER="cyverse-dnasub_apps.img"
 
-TYPE=${TYPE:-singularity}
+TYPE=${TYPE:-docker}
 
 # Manually, enumerate over each parameter
 DOCK_ENV="_$$.env"
@@ -34,7 +34,7 @@ echo "segment_length=${segment_length}" >> ${DOCK_ENV}
 echo "library_type=${library_type}" >> ${DOCK_ENV}
 echo "read_mismatches=${read_mismatches}" >> ${DOCK_ENV}
 echo "no_novel_juncs=${no_novel_juncs}" >> ${DOCK_ENV}
-echo "THREADS=15" >> ${DOCK_ENV}
+echo "THREADS=8" >> ${DOCK_ENV}
 
 #Container exec
 DEFAULT_EP="/opt/bin/run-${APPNAME}.sh"
@@ -43,7 +43,7 @@ env | sort -k1 > "_$$.variables"
 
 if [[ "$TYPE" == "docker" ]];
 then
-	docker run --entrypoint ${ENTRYPOINT} \
+	nice docker run --entrypoint ${ENTRYPOINT} \
 	 			--env-file ${DOCK_ENV} \
 	 			-v $PWD:/home:rw ${DOCKER_CONTAINER}
 fi

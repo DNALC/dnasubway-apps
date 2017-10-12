@@ -1,0 +1,33 @@
+{
+  "name": "trim2896-cm2900",
+  "owner": "ghiban",
+  "appId": "pl-corematrix-0.0.1",
+  "executionSystem": "dev-cshl-dolan-01",
+  "batchQueue": "dolanlc",
+  "nodeCount": 1,
+  "processorsPerNode": 1,
+  "memoryPerNode": 4,
+  "maxRunTime": "02:00:00",
+  "archive": false,
+  "inputs": {
+    "tree": [
+      "https://agave.iplantc.org/jobs/v2/8050799513623138791-242ac113-0001-007/outputs/media/output/rooted-tree.qza"
+    ],
+    "table": [
+      "https://agave.iplantc.org/jobs/v2/8050799513623138791-242ac113-0001-007/outputs/media/output/table.qza"
+    ],
+    "metadata": [
+      "/ghiban/purlple-line-data/watereco_edna/WaterEco-0.tsv"
+    ],
+    "repseqs": [
+      "https://agave.iplantc.org/jobs/v2/8050799513623138791-242ac113-0001-007/outputs/media/output/rep-seqs.qza"
+    ],
+    "classifier": [
+      "ghiban/gg-13-8-99-515-806-nb-classifier.qza"
+    ]
+  },
+  "parameters": {
+    "jobName": "trim2896-cm2900",
+    "sdepth": 1000
+ }
+}

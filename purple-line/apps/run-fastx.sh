@@ -156,15 +156,9 @@ fi
 
 cd ..
 
-echoerr "-------------------------------------"
-ls -l ${OUTDIR}/
-echoerr "-------------------------------------"
-echoerr $(ls -l ${OUTDIR}/)
-echoerr "-------------------------------------"
-
-rm -fv ${OUTDIR}/${infile}
-rm -fv ./${basename}*
-rm -frv ${OUTDIR}/*filt* ${OUTDIR}/*trim* ${OUTDIR}/*fastqc
+rm -f ${OUTDIR}/${infile}
+rm -f ./${basename}*
+rm -fr ${OUTDIR}/*filt* ${OUTDIR}/*trim* ${OUTDIR}/*fastqc
 
 if [ "${DEBUG}" == "1" ];
 then

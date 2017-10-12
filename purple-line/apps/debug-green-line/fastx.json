@@ -1,0 +1,26 @@
+{
+    "name" : "fx23393",
+    "appId" : "dnasubway-fastx-singularity-stampede-0.0.14u3",
+    "executionSystem" : "stampede.tacc.utexas.edu",
+    "batchQueue" : "serial",
+    "nodeCount" : 1,
+    "processorsPerNode" : 2,
+    "memoryPerNode" : 4.0,
+    "maxRunTime" : "03:00:00",
+    "archive" : true,
+    "retries" : 0,
+    "archivePath" : "ghiban/DNASubway/project-1941/fx23393",
+    "archiveSystem" : "data.iplantcollaborative.org",
+    "outputPath" : "ghiban/job-6308328047439572505-242ac115-0001-007-fx23393",
+    "inputs" : {
+      "seq1" : [ "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/sample_data/fastq/zea_mays/paired_end/WT_rep2_1.fastq.gz" ]
+    },
+    "parameters" : {
+      "perform_indexing" : 1,
+      "min_quality" : 20,
+      "percent_bases" : 50,
+      "jobName" : "fx23393",
+      "quality_threshold" : 20,
+      "min_length" : 20
+    }
+}

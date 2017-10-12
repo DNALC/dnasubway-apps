@@ -7,8 +7,8 @@ UPLOAD=${UPLOAD:-1}
 DELETE=${DELETE:-1}
 
 DEPLOYSYSTEM=data.iplantcollaborative.org
-DEPLOYPATH=vaughn/applications/dnasubway/container
-DEPLOYNOTIFY=vaughn@tacc.utexas.edu
+DEPLOYPATH=applications/dnasubway/balaur-docker
+DEPLOYNOTIFY=ghiban@cshl.edu
 
 auth-tokens-refresh -S
 
@@ -36,6 +36,6 @@ do
 	if [ -f "$WORKDIR/bundles/$A/app.json" ];
 	then
 		echo "Registering $A"
-		apps-addupdate -F $WORKDIR/bundles/$A/app.json
+		apps-addupdate -F $WORKDIR/bundles/$A/app-balaur.json
 	fi
 done

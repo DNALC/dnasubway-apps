@@ -110,6 +110,19 @@ if [[ -n $QUERY10 ]]; then echo $QUERY10 >> $MANIFEST; fi
 if [[ -n $QUERY11 ]]; then echo $QUERY11 >> $MANIFEST; fi
 if [[ -n $QUERY12 ]]; then echo $QUERY12 >> $MANIFEST; fi
 
+
+if [[ "$REF_GTF" =~ ".gz" ]]; then
+    echoerr "Decompressing ${REF_GTF} with gzip"
+    gzip -d "$REF_GTF"
+    REF_GTF=${REF_GTF//.gz/}
+fi
+
+if [[ "$REF_SEQ" =~ ".gz" ]]; then
+    echoerr "Decompressing ${REF_SEQ} with gzip"
+    gzip -d "$REF_SEQ"
+    REF_GTF=${REF_SEQ//.gz/}
+fi
+
 if [[ $SKIPCUFFMERGE -eq 1 ]]; then
     echoerr "Skipping Cuffmerge"
 else
@@ -295,4 +308,7 @@ then
 else
     echo "Cleaning up"
 fi
+
+#
+rm -f *.bam *.fas *.gtf *.gff
 

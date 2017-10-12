@@ -1,0 +1,12 @@
+{
+    "appId":"dnasubway-pl-import-balaur-0.0.1",
+    "maxRunTime":"01:00:00",
+    "archive":"false",
+    "inputs" : {
+        "files":["/ghiban/purlple-line-data/casava/BN1_S84_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN2_S85_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN3_S86_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN4_S87_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN5_S88_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN6_S89_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN7_S90_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/BN8_S91_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/Control1_S134_L001_R1_001.fastq.gz","/ghiban/purlple-line-data/casava/Control2_S135_L001_R1_001.fastq.gz"]
+    },
+    "parameters" : {
+        "jobName":"demux2645",
+        "format":"casava-1.8"
+    }
+}

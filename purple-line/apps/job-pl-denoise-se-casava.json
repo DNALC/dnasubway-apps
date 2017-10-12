@@ -1,0 +1,22 @@
+{
+  "name":"denoise-se-casava-single",
+  "appId": "dnasubway-pl-denoise-balaur-0.0.1",
+  "maxRunTime": "05:00:00",
+  "batchQueue": "dolanlc",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "metadata" : "ghiban/purlple-line-data/casava/sample_metadata.tsv",
+    "files": [ 
+        "https://agave.iplantc.org/jobs/v2/432571169552985625-242ac115-0001-007/outputs/media/imported.qza"
+    ]
+  },
+  "parameters": {
+    "jobName": "denoise-se-casava",
+    "paired": false,
+    "truncLen": 280,
+    "trimLeft": 0
+  },
+  "notifications": [
+  ]
+}

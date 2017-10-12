@@ -1,0 +1,18 @@
+{
+    "name" : "fq23392",
+    "owner" : "ghiban",
+    "appId" : "dnasubway-fastqc-singularity-stampede-0.11.4.0u3",
+    "executionSystem" : "stampede.tacc.utexas.edu",
+    "batchQueue" : "serial",
+    "nodeCount" : 1,
+    "processorsPerNode" : 16,
+    "memoryPerNode" : 4.0,
+    "maxRunTime" : "00:59:00",
+    "archive" : true,
+    "archivePath" : "ghiban/DNASubway/project-1941/fq23392",
+    "archiveSystem" : "data.iplantcollaborative.org",
+    "inputs" : {
+      "input" : [ "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/sample_data/fastq/zea_mays/paired_end/WT_rep2_2.fastq.gz" ]
+    },
+    "parameters" : { }
+}
