@@ -1,0 +1,183 @@
+{
+    "available":true,
+    "checkpointable":false,
+    "name": "pl-corematrix-2017.7",
+    "label": "DNASubway Qiime2 CoreMatrix",
+    "version": "0.0.1",
+    "helpURI": "http://qiime2.org/",
+    "defaultQueue": "dolanlc",
+    "defaultNodeCount": 1,
+    "defaultProcessorsPerNode": 1,
+    "defaultMemoryPerNode":"4GB",
+    "defaultMaxRunTime": "01:00:00",
+    "executionType": "HPC",
+    "executionSystem":"dev-cshl-dolan-01",
+    "parallelism": "SERIAL",
+    "deploymentPath": "perezde/applications/purple-line",
+    "deploymentSystem": "data.iplantcollaborative.org",
+    "shortDescription": "Qiime2 core matrix",
+    "longDescription": "",
+    "author": "Jorge Perez de Acha Chavez",
+    "parallelism": "SERIAL",
+    "templatePath": "wrap-pl-corematrix.sh",
+    "testPath": "test-pl-corematrix.sh",
+    "ontology": ["http://edamontology.org/topic_0091", "http://edamontology.org/operation_3219"],
+    "tags": [ "next-gen", "phylogeny", "qiime", "purpleline", "dnasubway" ],
+    "modules": [],
+    "inputs": [
+        {
+            "id": "tree",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "Phylogenetic tree containing tip identifiers that correspond to the feature identifiers in the table.",
+                "description": "This tree can contain tip ids that are not present in the table, but all feature ids in the table must be present in this tree."
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "table",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "A .qza feature table file",
+                "description": "The feature table containing the samples over which diversity metrics should be computed"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "metadata",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "Sample metadata file",
+                "description": "column with the barcodes must be named BarcodeSequence"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "repseqs",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "A .qza rep-seqs file",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "classifier",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "A pre-trained Naive Bayes classifier",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "raw-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "jobName",
+            "value": {
+                "default": "qiime2-corematrix",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "job name",
+                "description": "the name of the job"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "sdepth",
+            "value": {
+                "default": 100,
+                "type": "number",
+                "validator": "[0-9]+",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "The total frequency that each sample should be rarefied to prior to computing diversity metrics.",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        }
+    ],
+    "outputs": []
+}
