@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo metadata=${metadata:-sample_metadata.tsv} >> envs
+echo metadata=${metadata:-"sample_metadata.tsv"} >> envs
 echo jobName=${jobName:-"test-qiime2-corematrix"} >> envs
 echo table=${table:-table.qza} >> envs
 echo tree=${tree:-"rooted-tree.qza"} >> envs
