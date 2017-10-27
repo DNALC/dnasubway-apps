@@ -7,7 +7,7 @@ if [[ $DEBUG == 1 ]]; then
     set -x
 fi
 
-OUTPUT=./ouput
+OUTPUT=./output
 
 qiime diversity core-metrics \
     --i-phylogeny ${tree} \
@@ -71,10 +71,13 @@ qiime taxa barplot \
     --m-metadata-file ${metadata} \
     --o-visualization ${OUTPUT}/taxa-bar-plots.qzv
 
+ls -l
+ls -l ${OUTPUT}
+
 tar czvf output.tgz ${OUTPUT}/*.qzv
 
 rm -v ${classifier}
 
-mv ouput/* output/
+# mv ouput/* output/
 
 set +x
