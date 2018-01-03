@@ -1,4 +1,4 @@
-FROM qiime2/core:2017.7
+FROM qiime2/core:2017.8
 
 RUN apt-get install -y unzip tree
 

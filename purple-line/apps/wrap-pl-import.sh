@@ -3,7 +3,7 @@
 mkdir input-data/
 export INPUT=./input-data/
 
-mv -v *.fastq.gz $INPUT
+find . -name \*.fastq.gz -exec mv -v {} $INPUT \;
 
 echo "bfile=${bfile}" >> envs
 echo "jobName=${jobName}" >> envs

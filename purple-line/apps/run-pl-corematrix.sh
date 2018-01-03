@@ -90,11 +90,11 @@ diff=$(($date2-$date1))
 echoerr "\n$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed.\n"
 
 tar czvf output.tgz ${OUTPUT}/*.qzv
+mv -v ${OUTPUT}/taxonomy.qza .
 
+rm -v ${classifier} ${table} ${tree}
+rm -rfv $OUTPUT/
 
-rm -v ${classifier}
-
-# mv ouput/* output/
 
 if [[ "${DEBUG}" == "1" ]]; then
     set +x
