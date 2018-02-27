@@ -9,7 +9,7 @@ echo "bfile=${bfile}" >> envs
 echo "jobName=${jobName}" >> envs
 echo "format=${format}" >> envs
 echo "paired=${paired}" >> envs
-echo "RANDSAMPLES=${randomSamples:-8}" >> envs
+echo "RANDSAMPLES=${randomSamples}" >> envs
 echo "INPUT=${INPUT}" >> envs
 echo "DEBUG=${DEBUG}" >> envs
 

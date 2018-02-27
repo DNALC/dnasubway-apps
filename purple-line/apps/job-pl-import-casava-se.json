@@ -22,7 +22,7 @@
   "parameters": {
     "jobName": "test-pl-import-casava-se",
     "paired": false,
-    "format": "casava-1.8"
+    "format": "casava-18"
   },
   "notifications": [
   ]
